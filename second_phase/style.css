@@ -1,0 +1,361 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0b0f 0%, #1a1b24 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Smartphone Container */
+.phone-container {
+    perspective: 1000px;
+}
+
+.phone-screen {
+    position: relative;
+    width: 375px;
+    height: 812px;
+    background: linear-gradient(135deg, #1D1E27 0%, #1D1E27 100%);
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    border: 12px solid #0a0b0f;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Gradient Pop Effect - Top Right */
+.gradient-pop {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #436064 0%, rgba(67, 96, 100, 0.5) 30%, rgba(29, 30, 39, 0) 100%);
+    border-radius: 50%;
+    filter: blur(40px);
+    mix-blend-mode: normal;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Header */
+.phone-header {
+    position: relative;
+    z-index: 2;
+    padding: 40px 20px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(67, 96, 100, 0.3);
+}
+
+.phone-header h1 {
+    color: #436064;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Main Content */
+.phone-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Cards */
+.card {
+    background: rgba(67, 96, 100, 0.1);
+    border: 1px solid rgba(67, 96, 100, 0.3);
+    border-radius: 16px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    background: rgba(67, 96, 100, 0.2);
+    border-color: rgba(67, 96, 100, 0.6);
+    transform: translateY(-2px);
+}
+
+.card h2 {
+    color: #436064;
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.card p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Footer */
+.phone-footer {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid rgba(67, 96, 100, 0.2);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.phone-footer p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+}
+
+/* Status Bar Simulation */
+.phone-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 44px;
+    background: linear-gradient(180deg, rgba(29, 30, 39, 0.9) 0%, rgba(29, 30, 39, 0.4) 100%);
+    z-index: 10;
+}
+
+/* Notch Simulation */
+.phone-screen::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 30px;
+    background: #0a0b0f;
+    border-radius: 0 0 30px 30px;
+    z-index: 11;
+}
+
+/* Scrollbar Styling */
+.phone-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.phone-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.phone-content::-webkit-scrollbar-thumb {
+    background: rgba(67, 96, 100, 0.5);
+    border-radius: 2px;
+}
+
+.phone-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(67, 96, 100, 0.8);
+}
+
+/* StartScreen */
+.StartScreen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 10px;
+}
+
+/* Button Wrapper */
+.button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+    position: relative;
+    cursor: grab;
+    transition: transform 0.1s ease-out;
+}
+
+.button-wrapper.dragging {
+    cursor: grabbing;
+}
+
+/* Start Button */
+.start-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #7A71E7 0%, #1F6CEC 100%);    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(20, 112, 204, 0.6);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.start-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 30px rgba(30, 144, 255, 0.6);
+}
+
+.start-button:active {
+    transform: scale(0.95);
+}
+
+.button-text {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Down arrow icon */
+.button-text::before {
+    content: '↓';
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 40px;
+    height: 160px;
+    border-radius: 100px;
+    background: linear-gradient(180deg, rgba(27, 171, 159, 0.00) 10%, #1BAB9F 100%);
+    transition: all 0.3s ease;
+    opacity: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 8px;
+    transform-origin: top center;
+}
+
+/* Bar Image */
+.bar-image {
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .phone-screen {
+        width: 320px;
+        height: 640px;
+        border-radius: 40px;
+        border: 8px solid #0a0b0f;
+    }
+}
+
+@media (max-width: 480px) {
+    .phone-screen {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        border: none;
+    }
+    
+    body {
+        min-height: 100vh;
+    }
+}
+
+/* Voting Phase Styles */
+.voting-phase {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+}
+
+.threads-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    transform: scale(0.8);
+    transform-origin: top center;
+}
+
+.threads-image {
+        width: 100%;
+    max-width: 375px;
+    object-fit: contain;
+}
+
+.card-stack {
+    flex: 1;
+    position: relative;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+.swipe-card {
+    position: absolute;
+    width: 100%;
+    max-width: 220px;
+    height: 320px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    object-fit: cover;
+    transform-origin: 50% 100%;
+    user-select: none;
+    cursor: grab;
+}
+.swipe-card:active {
+    cursor: grabbing;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px 20px 40px 20px;
+}
+
+.action-btn {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+.action-btn:active {
+    transform: scale(0.9);
+}
+
+.trash-btn {
+    background: #ff4757;
+    color: white;
+}
+.heart-btn {
+    background: #2ed573;
+    color: white;
+}
+.action-btn svg {
+    width: 32px;
+    height: 32px;
+}

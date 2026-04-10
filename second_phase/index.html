@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plurivent</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="phone-container">
+        <div class="phone-screen">
+            <div class="gradient-pop"></div>
+            <main class="phone-content" style="padding: 0; overflow: hidden;">
+                <div class="voting-phase">
+                    <!-- Threads Image -->
+                    <div class="threads-container">
+                        <img src="threads.png" alt="Threads" class="threads-image">
+                    </div>
+                    
+                    <!-- Card Stack -->
+                    <div class="card-stack" id="cardStack">
+                        <!-- Cards injected by JS -->
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="actions">
+                        <!-- Swiping right = rejecting -->
+                        <button id="btnReject" class="action-btn trash-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6"></path></svg>
+                        </button>
+                        <!-- Swiping left = accepting -->
+                        <button id="btnAccept" class="action-btn heart-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </main>
+            <footer class="phone-footer">
+                <p>&copy; 2026 Plurivent</p>
+            </footer>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
