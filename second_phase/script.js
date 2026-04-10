@@ -54,24 +54,26 @@ function createCard(imageUrl, index) {
     
     card.addEventListener('touchstart', onStart, { passive: false });
     card.addEventListener('touchmove', onMove, { passive: false });
-    card.addEventListener('touchend', onEnd);
+    card.addEventListener('touchend', onEnd, { passive: false });
 
     return card;
 }
 
 function handleAction(index, action) {
-    results.push({ image: images[index], action });
-    const card = document.querySelector(`.swipe-card[data-index="${index}"]`);
-    if(card) {
-        const moveOut = action === 'liked' ? -500 : 500;
+    const image = images[index];
+    results.push({ image, action });
+    const card = document.querySelector(`[data-index="${index}"]`);
+    if (card) {
+        const moveOut = action === 'rejected' ? 500 : -500;
+        card.style.transition = 'transform 0.3s ease-out';
         card.style.transform = `translateX(${moveOut}px) rotate(${moveOut * 0.05}deg)`;
         setTimeout(() => card.remove(), 300);
     }
     
     currentCardIndex++;
-    updateStack();
+    setTimeout(() => updateStack(), 300);
     if (currentCardIndex >= images.length) {
-        downloadCSV();
+        setTimeout(() => downloadCSV(), 600);
     }
 }
 
@@ -123,4 +125,3 @@ document.getElementById('btnAccept').addEventListener('click', () => {
 });
 
 initStack();
-
