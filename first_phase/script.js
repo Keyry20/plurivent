@@ -307,6 +307,7 @@ document.addEventListener(
 
     // Extend the follow bar to the right
     followBar.style.width = `${limitedX + 40}px`;
+    followBar.classList.add("active");
   },
   { passive: false },
 );
@@ -317,10 +318,15 @@ document.addEventListener(
     if (isFollowButtonDragging) {
       isFollowButtonDragging = false;
 
-      // If button is stuck at the limit, keep it there
+      // If button is stuck at the limit, show new screen
       if (isButtonStuck) {
         followButton.style.transition = "all 0.3s ease";
         followBar.style.transition = "width 0.3s ease, opacity 0.3s ease";
+        
+        // Create new empty screen after a short delay
+        setTimeout(() => {
+          showNewScreen();
+        }, 500);
         return;
       }
 
@@ -331,6 +337,7 @@ document.addEventListener(
       followButton.style.transform = "translateX(0px)";
       followBar.style.width = "0px";
       followBar.style.opacity = "0";
+      followBar.classList.remove("active");
 
       setTimeout(() => {
         followButton.style.transition = "all 0.3s ease";
@@ -340,3 +347,29 @@ document.addEventListener(
   },
   { passive: false },
 );
+
+function showNewScreen() {
+  // Hide current moodboard and progress bar
+  const moodboardContainer = document.getElementById("moodboardContainer");
+  const appContent = document.querySelector(".app-content");
+  const dragWrapper = document.getElementById("dragWrapper");
+  
+  moodboardContainer.style.opacity = "0";
+  moodboardContainer.style.pointerEvents = "none";
+  dragWrapper.style.opacity = "0";
+  dragWrapper.style.pointerEvents = "none";
+  horizontalBar.style.opacity = "0";
+  horizontalBar.style.pointerEvents = "none";
+  
+  // Create new empty screen
+  const newScreen = document.createElement("div");
+  newScreen.className = "new-screen";
+  newScreen.innerHTML = `
+    <div class="new-screen-content">
+      <h1>Moodboard Submitted!</h1>
+      <p>Your moodboard has been successfully submitted.</p>
+    </div>
+  `;
+  
+  appContent.appendChild(newScreen);
+}
