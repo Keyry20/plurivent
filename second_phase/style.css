@@ -4,7 +4,8 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -12,8 +13,10 @@ html, body {
 }
 
 body {
-    background: linear-gradient(135deg, #1D1E27 0%, #1D1E27 100%);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #1d1e27 0%, #1d1e27 100%);
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
 }
 
 /* App Container */
@@ -23,7 +26,7 @@ body {
     height: 100vh;
     max-height: 100vh;
     overflow: hidden;
-    background: linear-gradient(135deg, #1D1E27 0%, #1D1E27 100%);
+    background: linear-gradient(135deg, #1d1e27 0%, #1d1e27 100%);
     display: flex;
     flex-direction: column;
 }
@@ -35,7 +38,12 @@ body {
     right: -100px;
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, #436064 0%, rgba(67, 96, 100, 0.5) 30%, rgba(29, 30, 39, 0) 100%);
+    background: radial-gradient(
+        circle,
+        #436064 0%,
+        rgba(67, 96, 100, 0.5) 30%,
+        rgba(29, 30, 39, 0) 100%
+    );
     border-radius: 50%;
     filter: blur(40px);
     mix-blend-mode: normal;
@@ -53,7 +61,6 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 20px;
 }
 
 /* Header */
@@ -85,23 +92,9 @@ body {
 .threads-container {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     width: 100%;
-    gap: 10px;
-    padding: 20px 10px;
-}
-
-.thread {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(67, 96, 100, 0.3);
-    border: 2px solid #436064;
+    padding-top: 0;
 }
 
 /* Card Stack Container */
@@ -133,6 +126,18 @@ body {
     cursor: grabbing;
 }
 
+.swipe-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+
 /* Actions */
 .actions {
     display: flex;
@@ -149,7 +154,9 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 

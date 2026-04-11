@@ -1,51 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Plurivent - Voting</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="app-container">
-        <div class="gradient-pop"></div>
-        <header class="phone-header">
-            <h1>Plurivent</h1>
-        </header>
-        <main class="app-content">
-            <div class="voting-phase">
-                <!-- Threads Container -->
-                <div class="threads-container">
-                    <div class="thread"><div class="avatar avatar1"></div></div>
-                    <div class="thread"><div class="avatar avatar2"></div></div>
-                    <div class="thread"><div class="avatar avatar3"></div></div>
-                    <div class="thread"><div class="avatar avatar4"></div></div>
-                </div>
-                
-                <!-- Card Stack -->
-                <div class="card-stack" id="cardStack">
-                    <!-- Cards injected by JS -->
-                </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no"
+        />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent"
+        />
+        <title>Plurivent - Voting</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="app-container">
+            <div class="gradient-pop"></div>
+            <main class="app-content">
+                <div class="voting-phase">
+                    <!-- Threads Container -->
+                    <div class="threads-container">
+                        <img
+                            src="threads.png"
+                            alt="Threads"
+                            style="
+                                max-width: 100%;
+                                height: auto;
+                                display: block;
+                            "
+                        />
+                    </div>
 
-                <!-- Actions -->
-                <div class="actions">
-                    <!-- Swiping right = rejecting -->
-                    <button id="btnReject" class="action-btn trash-btn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6"></path></svg>
-                    </button>
-                    <!-- Swiping left = accepting -->
-                    <button id="btnAccept" class="action-btn heart-btn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg>
-                    </button>
+                    <!-- Card Stack -->
+                    <div class="card-stack" id="cardStack">
+                        <!-- Cards injected by JS -->
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="actions">
+                        <!-- Swiping right = rejecting -->
+                        <button id="btnReject" class="action-btn trash-btn">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path
+                                    d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6"
+                                ></path>
+                            </svg>
+                        </button>
+                        <!-- Swiping left = accepting -->
+                        <button id="btnAccept" class="action-btn heart-btn">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                                ></path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </main>
-        <footer class="phone-footer">
-            <p>&copy; 2026 Plurivent</p>
-        </footer>
-    </div>
-    <script src="script.js"></script>
-</body>
+            </main>
+        </div>
+        <script src="script.js"></script>
+    </body>
 </html>
