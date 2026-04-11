@@ -4,12 +4,14 @@ const progressBar = document.querySelector(".progress-bar");
 const horizontalBar = document.getElementById("horizontalBar");
 const dragWrapper = document.getElementById("dragWrapper");
 const lightBulb = document.querySelector(".light-bulb");
+const followButton = document.getElementById("followButton");
 
 // Drag functionality
 let isDragging = false;
 let isMoodboardActive = false;
 let startY = 0;
 let offsetY = 0;
+let firstImageAdded = false;
 const maxDrag = 100;
 
 const initialHeight = parseInt(getComputedStyle(progressBar).height);
@@ -184,6 +186,13 @@ function addToMoodboard(src) {
   });
 
   addBtnCell.parentNode.insertBefore(item, addBtnCell);
+  
+  // Show follow button on first image added
+  if (!firstImageAdded) {
+    firstImageAdded = true;
+    followButton.classList.add("visible");
+  }
+  
   updateAddBtnPosition();
 }
 
@@ -207,10 +216,26 @@ function updateProgressBarHeight() {
     const top = rect.top + window.scrollY;
     const newHeight = scrollHeight - top - 40;
     progressBar.style.height = `${Math.max(newHeight, maxDrag + initialHeight)}px`;
+    
+    // Update follow button position after progress bar animation completes
+    setTimeout(() => {
+      updateFollowButtonPosition();
+    }, 350);
   }, 150);
 }
 
-window.addEventListener("resize", updateProgressBarHeight);
+function updateFollowButtonPosition() {
+  // Position button at the bottom of the progress bar
+  const progressBarHeight = parseInt(getComputedStyle(progressBar).height);
+  const topPosition = progressBarHeight;
+  followButton.style.top = `${topPosition}px`;
+  followBar.style.top = `${topPosition}px`;
+}
+
+window.addEventListener("resize", () => {
+  updateProgressBarHeight();
+  updateFollowButtonPosition();
+});
 
 addBtnCell.addEventListener("click", () => {
   imagePickerOverlay.classList.add("active");
@@ -231,3 +256,87 @@ document.addEventListener("click", (e) => {
 
 populatePicker();
 updateAddBtnPosition();
+
+// Follow Button Drag Logic (Horizontal - Right Only, to screen edge)
+let isFollowButtonDragging = false;
+let followButtonStartX = 0;
+let followButtonOffsetX = 0;
+let isButtonStuck = false;
+let stuckPosition = 0;
+const followBar = document.getElementById("followBar");
+
+followButton.addEventListener(
+  "touchstart",
+  (e) => {
+    if (!followButton.classList.contains("visible")) return;
+    isFollowButtonDragging = true;
+    followButtonStartX = e.touches[0].clientX;
+    followBar.style.opacity = "1";
+    isButtonStuck = false;
+  },
+  { passive: false },
+);
+
+document.addEventListener(
+  "touchmove",
+  (e) => {
+    if (!isFollowButtonDragging || !isMoodboardActive) return;
+
+    e.preventDefault();
+    followButtonOffsetX = e.touches[0].clientX - followButtonStartX;
+
+    // Slower movement with 1.0x multiplier for smoother response
+    const acceleratedX = followButtonOffsetX * 1.0;
+
+    // Limit movement to 80% of screen width to the right
+    const maxScreenDrag = window.screen.width * 0.8;
+    const limitedX = Math.max(0, Math.min(acceleratedX, maxScreenDrag));
+
+    // Check if button reached the limit
+    if (limitedX === maxScreenDrag) {
+      isButtonStuck = true;
+      stuckPosition = limitedX;
+    }
+
+    // Remove transition for instant feedback during drag
+    followButton.style.transition = "none";
+    followBar.style.transition = "none";
+
+    // Move the button to the right
+    followButton.style.transform = `translateX(${limitedX}px)`;
+
+    // Extend the follow bar to the right
+    followBar.style.width = `${limitedX + 40}px`;
+  },
+  { passive: false },
+);
+
+document.addEventListener(
+  "touchend",
+  () => {
+    if (isFollowButtonDragging) {
+      isFollowButtonDragging = false;
+
+      // If button is stuck at the limit, keep it there
+      if (isButtonStuck) {
+        followButton.style.transition = "all 0.3s ease";
+        followBar.style.transition = "width 0.3s ease, opacity 0.3s ease";
+        return;
+      }
+
+      // Smooth return to initial position
+      followButton.style.transition = "transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)";
+      followBar.style.transition = "width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease";
+
+      followButton.style.transform = "translateX(0px)";
+      followBar.style.width = "0px";
+      followBar.style.opacity = "0";
+
+      setTimeout(() => {
+        followButton.style.transition = "all 0.3s ease";
+        followBar.style.transition = "width 0.3s ease, opacity 0.3s ease";
+      }, 500);
+    }
+  },
+  { passive: false },
+);

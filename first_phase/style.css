@@ -440,6 +440,54 @@ body:has(.horizontal-bar.active) .moodboard-container {
     margin-top: 0;
 }
 
+/* Follow Button */
+.follow-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #7a71e7 0%, #1f6cec 100%);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(20, 112, 204, 0.6);
+    transition: all 0.3s ease;
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+    touch-action: none;
+}
+
+.follow-button.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.follow-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 30px rgba(30, 144, 255, 0.6);
+}
+
+.follow-button:active {
+    transform: scale(0.95);
+}
+
+/* Follow Bar - Extends horizontally */
+.follow-bar {
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 40px;
+    background: linear-gradient(90deg, #7a71e7 0%, #1f6cec 100%);
+    border-radius: 50px;
+    opacity: 0;
+    transition: width 0.3s ease, opacity 0.3s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
 /* Light bulb - Bar Image */
 .light-bulb {
     position: fixed;
