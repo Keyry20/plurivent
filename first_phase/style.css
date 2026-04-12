@@ -519,14 +519,10 @@ body:has(.horizontal-bar.active) .moodboard-container {
 
 /* New Screen */
 .new-screen {
-    position: relative;
+    position: fixed;
+    top: 10%;
     z-index: 2;
-    flex: 1;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     padding: 40px 20px;
 }
 
@@ -544,6 +540,16 @@ body:has(.horizontal-bar.active) .moodboard-container {
 .new-screen-content p {
     color: rgba(255, 255, 255, 0.7);
     font-size: 18px;
+}
+
+.new-screen-content p.download-status {
+    margin-top: 30px;
+    padding: 15px 20px;
+    background: rgba(67, 96, 100, 0.3);
+    border-radius: 10px;
+    border: 1px solid rgba(67, 96, 100, 0.5);
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 /* Responsive */

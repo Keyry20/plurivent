@@ -349,6 +349,26 @@ document.addEventListener(
 );
 
 function showNewScreen() {
+  // Collect all images from moodboard before hiding
+  const moodboardItems = document.querySelectorAll(".moodboard-item");
+  const images = [];
+  
+  moodboardItems.forEach((item) => {
+    const img = item.querySelector("img");
+    if (img){
+      array_img = img.src.split("/")
+      images.push(array_img[array_img.length -1].split(".")[0]);
+    }
+  });
+  
+  // Create JSON data
+  const moodboardData = {
+    images: images
+  };
+  
+  // Download JSON file
+  downloadMoodboardJSON(moodboardData);
+  
   // Hide current moodboard and progress bar
   const moodboardContainer = document.getElementById("moodboardContainer");
   const appContent = document.querySelector(".app-content");
@@ -368,8 +388,34 @@ function showNewScreen() {
     <div class="new-screen-content">
       <h1>Moodboard Submitted!</h1>
       <p>Your moodboard has been successfully submitted.</p>
+      <p>Waiting for others to submit their moodboard.</p>
+      <p class="download-status">JSON file downloading...</p>
     </div>
   `;
   
   appContent.appendChild(newScreen);
+}
+
+function downloadMoodboardJSON(data) {
+  // Convert data to JSON string
+  const jsonString = JSON.stringify(data, null, 2);
+  
+  // Create a Blob from the JSON data
+  const blob = new Blob([jsonString], { type: "application/json" });
+  
+  // Create a temporary URL for the blob
+  const url = URL.createObjectURL(blob);
+  
+  // Create a temporary anchor element to trigger download
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `moodboard-${Date.now()}.json`;
+  
+  // Append to body, click, and remove
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  
+  // Release the object URL
+  URL.revokeObjectURL(url);
 }
