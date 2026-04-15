@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plurivent - Main Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1d1e27 0%, #1d1e27 100%);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Gradient Pop Effect - Top Right */
+        .gradient-pop {
+            position: fixed;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(
+                circle,
+                #436064 0%,
+                rgba(67, 96, 100, 0.5) 30%,
+                rgba(29, 30, 39, 0) 100%
+            );
+            border-radius: 50%;
+            filter: blur(40px);
+            mix-blend-mode: normal;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            color: #436064;
+            margin-bottom: 50px;
+            font-size: 3em;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .phase-button {
+            padding: 20px 40px;
+            font-size: 1.2em;
+            font-weight: 600;
+            border: 1px solid rgba(67, 96, 100, 0.3);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #436064;
+            min-width: 200px;
+            background: rgba(67, 96, 100, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .phase-button:hover {
+            background: rgba(67, 96, 100, 0.2);
+            border-color: rgba(67, 96, 100, 0.6);
+            transform: translateY(-5px);
+        }
+
+        .phase-button:active {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-pop"></div>
+    <div class="container">
+        <h1>Plurivent</h1>
+        <div class="buttons-container">
+            <a href="first_phase/index.html" class="phase-button">Phase 1</a>
+            <a href="second_phase/index.html" class="phase-button">Phase 2</a>
+            <a href="third_phase/index.html" class="phase-button">Phase 3</a>
+        </div>
+    </div>
+</body>
+</html>
