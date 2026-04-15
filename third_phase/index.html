@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no"
+        />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent"
+        />
+        <title>Plurivent - Results</title>
+        <link rel="stylesheet" href="style.css" />
+        <style>
+            html,
+            body {
+                overflow-x: hidden !important;
+                max-width: 100vw;
+            }
+            .app-container {
+                width: 100% !important;
+                max-width: 100% !important;
+                overflow-x: hidden !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="app-container">
+            <div class="gradient-pop"></div>
+            <main class="app-content">
+                <!-- Upload Overlay -->
+                <div
+                    id="uploadOverlay"
+                    class="upload-overlay"
+                    style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100%;
+                        width: 100%;
+                        position: absolute;
+                        z-index: 10;
+                        background: linear-gradient(
+                            135deg,
+                            #1d1e27 0%,
+                            #1d1e27 100%
+                        );
+                        padding: 20px;
+                        text-align: center;
+                    "
+                >
+                    <h2 style="color: #436064; margin-bottom: 20px">
+                        Upload Voting Results CSV
+                    </h2>
+                    <p
+                        style="
+                            color: rgba(255, 255, 255, 0.7);
+                            margin-bottom: 30px;
+                        "
+                    >
+                        Please select the CSV file containing the voting results
+                        to evaluate.
+                    </p>
+                    <input
+                        type="file"
+                        id="csvFileInput"
+                        accept=".csv"
+                        style="
+                            color: white;
+                            background: rgba(67, 96, 100, 0.2);
+                            padding: 10px;
+                            border-radius: 8px;
+                            border: 1px solid rgba(67, 96, 100, 0.3);
+                        "
+                    />
+                </div>
+
+                <div
+                    class="results-phase"
+                    id="resultsPhase"
+                    style="
+                        display: none;
+                        width: 100%;
+                        height: 100%;
+                        flex-direction: column;
+                        align-items: center;
+                    "
+                >
+                    <!-- Threads Container -->
+                    <div class="threads-container">
+                        <img
+                            src="threads.png"
+                            alt="Threads"
+                            style="
+                                max-width: 100%;
+                                height: auto;
+                                display: block;
+                            "
+                        />
+                    </div>
+
+                    <h1
+                        class="results-title"
+                        style="
+                            color: #436064;
+                            font-size: 28px;
+                            font-weight: 700;
+                            margin-top: 20px;
+                            text-align: center;
+                        "
+                    >
+                        Results
+                    </h1>
+
+                    <!-- Normal Results View -->
+                    <div
+                        id="normalResultsView"
+                        style="
+                            display: none;
+                            width: 100%;
+                            flex-direction: column;
+                            align-items: center;
+                            flex: 1;
+                            overflow-y: auto;
+                        "
+                    >
+                        <div class="podium-container" id="podiumContainer">
+                            <!-- Injected by JS -->
+                        </div>
+                        <div class="list-container" id="listContainer">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Tie View -->
+                    <div
+                        id="tieView"
+                        style="
+                            display: none;
+                            width: 100%;
+                            flex-direction: column;
+                            align-items: center;
+                            flex: 1;
+                            overflow-y: auto;
+                            padding-bottom: 20px;
+                        "
+                    >
+                        <div class="tie-grid" id="tieGrid">
+                            <!-- Injected by JS -->
+                        </div>
+                        <div
+                            class="wheel-container"
+                            id="wheelContainer"
+                            style="
+                                display: none;
+                                position: relative;
+                                margin-top: 20px;
+                            "
+                        >
+                            <div
+                                style="
+                                    width: 300px;
+                                    height: 300px;
+                                    display: block;
+                                "
+                            >
+                                <svg
+                                    id="wheelSvg"
+                                    width="300"
+                                    height="300"
+                                    viewBox="0 0 300 300"
+                                    style="transform-origin: 50% 50%"
+                                ></svg>
+                            </div>
+                            <div
+                                class="spinner-pointer"
+                                style="
+                                    position: absolute;
+                                    top: 50%;
+                                    right: -15px;
+                                    transform: translateY(-50%);
+                                    width: 0;
+                                    height: 0;
+                                    border-top: 15px solid transparent;
+                                    border-bottom: 15px solid transparent;
+                                    border-right: 20px solid red;
+                                "
+                            ></div>
+                        </div>
+                        <button
+                            id="spinWheelBtn"
+                            class="spin-btn"
+                            style="
+                                margin-top: auto;
+                                margin-bottom: 20px;
+                                padding: 15px 30px;
+                                background-color: #436064;
+                                color: white;
+                                border: none;
+                                border-radius: 25px;
+                                font-size: 16px;
+                                font-weight: bold;
+                                cursor: pointer;
+                                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+                            "
+                        >
+                            Spin Wheel to Take Decision!
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,259 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    background: linear-gradient(135deg, #1d1e27 0%, #1d1e27 100%);
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+        Cantarell, sans-serif;
+}
+
+/* App Container */
+.app-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #1d1e27 0%, #1d1e27 100%);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Gradient Pop Effect - Top Right */
+.gradient-pop {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(
+        circle,
+        #436064 0%,
+        rgba(67, 96, 100, 0.5) 30%,
+        rgba(29, 30, 39, 0) 100%
+    );
+    border-radius: 50%;
+    filter: blur(40px);
+    mix-blend-mode: normal;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* App Content */
+.app-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Header */
+.phone-header {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(67, 96, 100, 0.3);
+}
+
+.phone-header h1 {
+    color: #436064;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Results Phase */
+.results-phase {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    align-items: center;
+    padding-bottom: 40px;
+}
+
+/* Threads Container */
+.threads-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    padding-top: 0;
+}
+
+/* Podium Container */
+.podium-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    position: relative;
+    height: 250px;
+}
+
+.podium-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.podium-img-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.podium-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.podium-rank-1 {
+    width: 140px;
+    height: 200px;
+    z-index: 3;
+}
+
+.podium-rank-2 {
+    width: 110px;
+    height: 160px;
+    margin-bottom: 20px;
+    z-index: 2;
+}
+
+.podium-rank-3 {
+    width: 90px;
+    height: 130px;
+    margin-bottom: 20px;
+    z-index: 1;
+}
+
+/* Crown Icon */
+.crown-icon {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    z-index: 4;
+}
+
+/* List Container */
+.list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 90%;
+    max-width: 400px;
+    margin-bottom: 40px;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.list-item-rank-1 {
+    background: linear-gradient(135deg, #ffd700, #b8860b);
+    color: #1d1e27;
+}
+
+.list-item-rank-2 {
+    background: linear-gradient(135deg, #e0e0e0, #a9a9a9);
+    color: #1d1e27;
+}
+
+.list-item-rank-3 {
+    background: linear-gradient(135deg, #cd7f32, #8b4513);
+    color: white;
+}
+
+.list-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.list-info {
+    flex: 1;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.list-score {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Tie Grid View */
+.tie-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.tie-grid-item {
+    width: calc(33.333% - 10px);
+    aspect-ratio: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.tie-grid-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Spin Button */
+.spin-btn {
+    transition:
+        transform 0.2s,
+        background-color 0.2s;
+}
+
+.spin-btn:active {
+    transform: scale(0.95);
+}
+
+.spin-btn:hover {
+    background-color: #55797e;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    body {
+        min-height: 100vh;
+    }
+}

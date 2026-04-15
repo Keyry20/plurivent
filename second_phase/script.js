@@ -3,58 +3,45 @@ const stackContainer = document.getElementById("cardStack");
 
 // Image map - name to path with correct extensions
 const imageMap = {
-  "bali0": "../database/Bali/bali0.png",
-  "bali1": "../database/Bali/bali1.jpg",
-  "bali2": "../database/Bali/bali2.jpg",
-  "bali3": "../database/Bali/bali3.jpg",
-  "bali4": "../database/Bali/bali4.jpg",
-  "delhi1": "../database/Delhi/delhi1.jpg",
-  "delhi2": "../database/Delhi/delhi2.jpg",
-  "delhi3": "../database/Delhi/delhi3.jpg",
-  "delhi4": "../database/Delhi/delhi4.jpg",
-  "lanzarote0": "../database/Lanzarote/lanzarote0.png",
-  "lanzarote1": "../database/Lanzarote/lanzarote1.jpg",
-  "lanzarote2": "../database/Lanzarote/lanzarote2.jpg",
-  "lanzarote3": "../database/Lanzarote/lanzarote3.jpg",
-  "lanzarote4": "../database/Lanzarote/lanzarote4.jpg",
-  "paris1": "../database/Paris/paris1.jpg",
-  "paris2": "../database/Paris/paris2.jpg",
-  "paris3": "../database/Paris/paris3.jpg",
-  "paris4": "../database/Paris/paris4.jpg",
-  "tbilisi1": "../database/Tbilisi/tbilisi1.jpg",
-  "tbilisi2": "../database/Tbilisi/tbilisi2.jpg",
-  "tbilisi3": "../database/Tbilisi/tbilisi3.jpg",
-  "tbilisi4": "../database/Tbilisi/tbilisi4.jpg",
-  "tokyo0": "../database/Tokyo/tokyo0.png",
-  "tokyo1": "../database/Tokyo/tokyo1.jpg",
-  "tokyo2": "../database/Tokyo/tokyo2.jpg",
-  "tokyo3": "../database/Tokyo/tokyo3.jpg",
-  "tokyo4": "../database/Tokyo/tokyo4.jpg",
-  "tokyo5": "../database/Tokyo/tokyo5.jpg",
-  "tromso1": "../database/Tromso/tromso1.jpg",
-  "tromso2": "../database/Tromso/tromso2.jpg",
-  "tromso3": "../database/Tromso/tromso3.jpg",
-  "venice0": "../database/Venice/venice0.png",
-  "venice1": "../database/Venice/venice1.jpg",
-  "venice2": "../database/Venice/venice2.jpg",
-  "venice3": "../database/Venice/venice3.jpg"
+  bali0: "../database/Bali/bali0.png",
+  bali1: "../database/Bali/bali1.jpg",
+  bali2: "../database/Bali/bali2.jpg",
+  bali3: "../database/Bali/bali3.jpg",
+  bali4: "../database/Bali/bali4.jpg",
+  delhi1: "../database/Delhi/delhi1.jpg",
+  delhi2: "../database/Delhi/delhi2.jpg",
+  delhi3: "../database/Delhi/delhi3.jpg",
+  delhi4: "../database/Delhi/delhi4.jpg",
+  lanzarote0: "../database/Lanzarote/lanzarote0.png",
+  lanzarote1: "../database/Lanzarote/lanzarote1.jpg",
+  lanzarote2: "../database/Lanzarote/lanzarote2.jpg",
+  lanzarote3: "../database/Lanzarote/lanzarote3.jpg",
+  lanzarote4: "../database/Lanzarote/lanzarote4.jpg",
+  paris1: "../database/Paris/paris1.jpg",
+  paris2: "../database/Paris/paris2.jpg",
+  paris3: "../database/Paris/paris3.jpg",
+  paris4: "../database/Paris/paris4.jpg",
+  tbilisi1: "../database/Tbilisi/tbilisi1.jpg",
+  tbilisi2: "../database/Tbilisi/tbilisi2.jpg",
+  tbilisi3: "../database/Tbilisi/tbilisi3.jpg",
+  tbilisi4: "../database/Tbilisi/tbilisi4.jpg",
+  tokyo0: "../database/Tokyo/tokyo0.png",
+  tokyo1: "../database/Tokyo/tokyo1.jpg",
+  tokyo2: "../database/Tokyo/tokyo2.jpg",
+  tokyo3: "../database/Tokyo/tokyo3.jpg",
+  tokyo4: "../database/Tokyo/tokyo4.jpg",
+  tokyo5: "../database/Tokyo/tokyo5.jpg",
+  tromso1: "../database/Tromso/tromso1.jpg",
+  tromso2: "../database/Tromso/tromso2.jpg",
+  tromso3: "../database/Tromso/tromso3.jpg",
+  venice0: "../database/Venice/venice0.png",
+  venice1: "../database/Venice/venice1.jpg",
+  venice2: "../database/Venice/venice2.jpg",
+  venice3: "../database/Venice/venice3.jpg",
 };
 
-// Image names list - Updated by merge_json.py script
-const imageNames = [
-  "venice0",
-  "tokyo5",
-  "venice3",
-  "bali1",
-  "tromso1",
-  "venice1",
-  "bali4",
-  "bali3",
-  "bali2",
-  "tokyo3",
-  "paris2",
-  "tbilisi2"
-];
+// Image names list - populated from JSON upload
+let imageNames = [];
 
 let images = [];
 let currentCardIndex = 0;
@@ -63,26 +50,30 @@ let currentCardIndex = 0;
 function initializeImages() {
   // 1. Check if imageNames was populated
   if (imageNames.length === 0) {
-    console.error('No images found');
-    stackContainer.innerHTML = '<p style="color: red;">No images in imageNames array</p>';
+    console.error("No images found");
+    stackContainer.innerHTML =
+      '<p style="color: red;">No images in imageNames array</p>';
     return;
   }
 
   // 2. Convert image names to full paths using the imageMap
-  images = imageNames.map(imageName => {
-    const path = imageMap[imageName];
-    if (!path) console.warn(`Image "${imageName}" not found in imageMap`);
-    return path || null;
-  }).filter(path => path !== null);
+  images = imageNames
+    .map((imageName) => {
+      const path = imageMap[imageName];
+      if (!path) console.warn(`Image "${imageName}" not found in imageMap`);
+      return path || null;
+    })
+    .filter((path) => path !== null);
 
   // 3. Final check and start the stack
   if (images.length === 0) {
-    console.error('No valid image paths found');
-    stackContainer.innerHTML = '<p style="color: red;">No valid images found.</p>';
+    console.error("No valid image paths found");
+    stackContainer.innerHTML =
+      '<p style="color: red;">No valid images found.</p>';
     return;
   }
 
-  console.log('Final paths ready:', images);
+  console.log("Final paths ready:", images);
   initStack(); // Start the UI logic
 }
 
@@ -168,8 +159,8 @@ function createCard(imageUrl, index) {
 function handleAction(index, action) {
   const imagePath = images[index];
   // Extract just the image name (e.g., "bali2" from "../database/Bali/bali2.jpg")
-  const imageName = imagePath.split('/').pop().split('.')[0];
-  
+  const imageName = imagePath.split("/").pop().split(".")[0];
+
   results.push({ image: imageName, action });
   const card = document.querySelector(`[data-index="${index}"]`);
   if (card) {
@@ -183,7 +174,7 @@ function handleAction(index, action) {
   setTimeout(() => updateStack(), 300);
   if (currentCardIndex >= images.length) {
     setTimeout(() => {
-      downloadJSON();
+      downloadCSV();
     }, 600);
   }
 }
@@ -215,24 +206,53 @@ function initStack() {
   });
 }
 
-function downloadJSON() {
-  const jsonContent = {
-    images: results
-  };
+function downloadCSV() {
+  const csvHeader = "image,action\n";
+  const csvRows = results.map((r) => `${r.image},${r.action}`).join("\n");
+  const csvString = csvHeader + csvRows;
 
-  const jsonString = JSON.stringify(jsonContent, null, 2);
-  const blob = new Blob([jsonString], { type: "application/json" });
+  const blob = new Blob([csvString], { type: "text/csv" });
   const url = URL.createObjectURL(blob);
 
   const link = document.createElement("a");
   link.href = url;
-  link.download = `voting_results-${Date.now()}.json`;
+  link.download = `voting_results-${Date.now()}.csv`;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
-  
+
   URL.revokeObjectURL(url);
 }
+
+document
+  .getElementById("jsonFileInput")
+  .addEventListener("change", function (e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      try {
+        const json = JSON.parse(e.target.result);
+        if (json.images && Array.isArray(json.images)) {
+          // Remove duplicates using Set
+          imageNames = [...new Set(json.images)];
+
+          // Hide overlay, show voting
+          document.getElementById("uploadOverlay").style.display = "none";
+          document.getElementById("votingPhase").style.display = "flex";
+
+          initializeImages();
+        } else {
+          alert("Invalid JSON format. Expected an 'images' array.");
+        }
+      } catch (error) {
+        console.error("Error parsing JSON:", error);
+        alert("Error parsing JSON file.");
+      }
+    };
+    reader.readAsText(file);
+  });
 
 document.getElementById("btnReject").addEventListener("click", () => {
   if (currentCardIndex < images.length)
@@ -242,6 +262,3 @@ document.getElementById("btnReject").addEventListener("click", () => {
 document.getElementById("btnAccept").addEventListener("click", () => {
   if (currentCardIndex < images.length) handleAction(currentCardIndex, "liked");
 });
-
-// Initialize
-initializeImages();
